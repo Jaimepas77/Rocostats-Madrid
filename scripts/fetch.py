@@ -1,4 +1,4 @@
-import requests, json, datetime
+import cloudscraper, json, datetime
 from urllib.parse import unquote
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -7,7 +7,7 @@ BASE = "https://sputnikclimbing.deporsite.net"
 DATA_FILE = Path("data/stats.json")
 
 def get_data():
-    s = requests.Session()
+    s = cloudscraper.create_scraper()
     s.get(f"{BASE}/aforo-lasrozas")
 
     token = unquote(s.cookies.get("XSRF-TOKEN"))
