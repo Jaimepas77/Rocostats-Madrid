@@ -1,0 +1,30 @@
+{
+  "es": {
+    "place": "Centro",
+    "total": "Media total",
+    "weekday": "Media por día",
+    "month": "Media por mes",
+    "months": "Meses"
+  },
+  "en": {
+    "place": "Gym",
+    "total": "Total average",
+    "weekday": "Average by weekday",
+    "month": "Average by month",
+    "months": "Months"
+  },
+  "zh": {
+    "place": "场馆",
+    "total": "总体平均",
+    "weekday": "按星期平均",
+    "month": "按月份平均",
+    "months": "月份"
+  },
+  "ja": {
+    "place": "施設",
+    "total": "全体平均",
+    "weekday": "曜日別平均",
+    "month": "月別平均",
+    "months": "月"
+  }
+}
