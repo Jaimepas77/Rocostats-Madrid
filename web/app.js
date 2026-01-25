@@ -166,6 +166,9 @@ function render() {
 }
 
 function updateLabels(t) {
+  document.getElementById("title").textContent = "🧗 " + t.title;
+  document.getElementById("subtitle").textContent = t.subtitle;
+  document.getElementById("label-lang").textContent = t.language;
   document.getElementById("label-place").textContent = t.place;
   document.getElementById("label-total").textContent = t.total;
   document.getElementById("label-weekday").textContent = t.weekday;

@@ -4,27 +4,39 @@
     "total": "Media total",
     "weekday": "Media por día",
     "month": "Media por mes",
-    "months": "Meses"
+    "months": "Filtrar meses",
+    "title": "Estadísticas de Escalada",
+    "subtitle": "Sigue las tendencias de ocupación de tu gimnasio",
+    "language": "Idioma"
   },
   "en": {
     "place": "Gym",
     "total": "Total average",
     "weekday": "Average by weekday",
     "month": "Average by month",
-    "months": "Months"
+    "months": "Filter months",
+    "title": "Climbing Stats",
+    "subtitle": "Track your gym's occupancy trends",
+    "language": "Language"
   },
   "zh": {
     "place": "场馆",
     "total": "总体平均",
     "weekday": "按星期平均",
     "month": "按月份平均",
-    "months": "月份"
+    "months": "筛选月份",
+    "title": "攀岩统计",
+    "subtitle": "追踪您的攀岩馆占用趋势",
+    "language": "语言"
   },
   "ja": {
     "place": "施設",
     "total": "全体平均",
     "weekday": "曜日別平均",
     "month": "月別平均",
-    "months": "月"
+    "months": "月をフィルター",
+    "title": "クライミング統計",
+    "subtitle": "ジムの混雑傾向を追跡",
+    "language": "言語"
   }
 }
