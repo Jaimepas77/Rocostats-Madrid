@@ -6,7 +6,7 @@ const PLACE_MAP = {
 };
 
 const MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-const WEEKDAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const WEEKDAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 let selectedMonths = new Set([...Array(12).keys()]);
 let stats, i18n;
@@ -37,7 +37,7 @@ function initSelectors() {
     option.textContent = name;
     placeSel.appendChild(option);
   });
-  placeSel.value = 2;
+  placeSel.value = 4;
   placeSel.onchange = render;
 }
 
@@ -80,6 +80,31 @@ function average(arr) {
   return arr.reduce((a, b) => a + b, 0) / arr.length || 0;
 }
 
+function getColorForPercentage(percentage) {
+  const p = percentage / 100;
+  
+  let r, g, b;
+  
+  if (p < 0.5) {
+    const ratio = p * 2;
+    r = Math.round(100 + (120 - 100) * ratio);
+    g = Math.round(180 + (190 - 180) * ratio);
+    b = Math.round(140 + (150 - 140) * ratio);
+  } else if (p < 0.75) {
+    const ratio = (p - 0.5) * 4;
+    r = Math.round(120 + (245 - 120) * ratio);
+    g = Math.round(190 + (158 - 190) * ratio);
+    b = Math.round(150 + (11 - 150) * ratio);
+  } else {
+    const ratio = (p - 0.75) * 4;
+    r = Math.round(245 + (239 - 245) * ratio);
+    g = Math.round(158 - (158 - 68) * ratio);
+    b = Math.round(11 + (68 - 11) * ratio);
+  }
+  
+  return { r, g, b };
+}
+
 function createBarChart(container, labels, values) {
   container.innerHTML = '';
   
@@ -98,15 +123,13 @@ function createBarChart(container, labels, values) {
     fill.className = "bar-fill";
     
     const percentage = (value * 100);
+    const { r, g, b } = getColorForPercentage(percentage);
     
-    if (percentage < 50) {
-      fill.classList.add("low");
-    } else if (percentage < 75) {
-      fill.classList.add("medium");
-    } else {
-      fill.classList.add("high");
-    }
+    const color1 = `rgb(${r}, ${g}, ${b})`;
+    const color2 = `rgb(${Math.min(255, r + 30)}, ${Math.min(255, g + 30)}, ${Math.min(255, b + 30)})`;
     
+    fill.style.background = `linear-gradient(90deg, ${color1}, ${color2})`;
+    fill.style.boxShadow = `0 0 15px rgba(${r}, ${g}, ${b}, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2)`;
     fill.style.width = `${percentage}%`;
     
     const valueLabel = document.createElement("span");
@@ -156,11 +179,12 @@ function renderTotalAverage(rows) {
 }
 
 function renderWeekdayChart(rows) {
-  const weekday = Array.from({length: 7}, (_, d) =>
-    average(rows.filter(r => 
-      r.date.getDay() === d && selectedMonths.has(r.date.getMonth())
-    ).map(r => r.rel))
-  );
+  const weekday = Array.from({length: 7}, (_, d) => {
+    const actualDay = (d + 1) % 7;
+    return average(rows.filter(r => 
+      r.date.getDay() === actualDay && selectedMonths.has(r.date.getMonth())
+    ).map(r => r.rel));
+  });
   
   createBarChart(
     document.getElementById("weekday-chart"),
