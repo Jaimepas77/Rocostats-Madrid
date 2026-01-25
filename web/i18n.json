@@ -2,11 +2,11 @@
   "es": {
     "place": "Centro",
     "total": "Media total",
-    "weekday": "Media por día",
+    "weekday": "Media por día de la semana",
     "month": "Media por mes",
     "months": "Filtrar meses",
     "title": "Estadísticas de Escalada",
-    "subtitle": "Sigue las tendencias de ocupación de tu gimnasio",
+    "subtitle": "Sigue las tendencias de ocupación de tu rocódromo",
     "language": "Idioma"
   },
   "en": {
