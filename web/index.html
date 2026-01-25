@@ -2,16 +2,49 @@
 <html>
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sputnik Stats</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <select id="lang"></select>
-  <select id="place"></select>
+  <div class="container">
+    <div class="header">
+      <h1>🧗 Climbing Stats</h1>
+      <p>Track your gym's occupancy trends</p>
+    </div>
 
-  <h2 id="total"></h2>
-  <div id="months"></div>
-  <div id="weekday"></div>
-  <div id="month"></div>
+    <div class="controls">
+      <div class="control-group">
+        <label id="label-place">Gym</label>
+        <select id="place"></select>
+      </div>
+      <div class="control-group">
+        <label id="label-lang">Language</label>
+        <select id="lang"></select>
+      </div>
+    </div>
+
+    <div class="glass-card total-card">
+      <div class="stat-title" id="label-total">Total Average</div>
+      <div class="stat-value" id="total">--</div>
+    </div>
+
+    <div class="glass-card">
+      <div class="weekday-header">
+        <div class="stat-title" id="label-weekday">Average by Weekday</div>
+        <details class="month-filter">
+          <summary id="label-months">Filter months</summary>
+          <div class="months-selector" id="months"></div>
+        </details>
+      </div>
+      <div class="chart" id="weekday-chart"></div>
+    </div>
+
+    <div class="glass-card">
+      <div class="stat-title" id="label-month">Average by Month</div>
+      <div class="chart" id="month-chart"></div>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
