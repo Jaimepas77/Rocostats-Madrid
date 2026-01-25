@@ -8,9 +8,6 @@ DATA_FILE = Path("data/stats.json")
 
 def get_data():
     s = requests.Session()
-    s.headers.update({
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    })
     s.get(f"{BASE}/aforo-lasrozas")
 
     token = unquote(s.cookies.get("XSRF-TOKEN"))
