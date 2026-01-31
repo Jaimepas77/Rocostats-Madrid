@@ -1,50 +1,5 @@
 [
   {
-    "timestamp": "2026-01-24T20:12:02.870833+01:00",
-    "data": [
-      {
-        "IdRecinto": 1,
-        "Recinto": "Alcobendas Principal",
-        "Ocupacion": 129,
-        "Entradas": 608,
-        "Salidas": 479,
-        "Aforo": 290
-      },
-      {
-        "IdRecinto": 2,
-        "Recinto": "Las Rozas Principal",
-        "Ocupacion": 180,
-        "Entradas": 1455,
-        "Salidas": 1195,
-        "Aforo": 525
-      },
-      {
-        "IdRecinto": 3,
-        "Recinto": "Berango Principal",
-        "Ocupacion": 60,
-        "Entradas": 252,
-        "Salidas": 192,
-        "Aforo": 290
-      },
-      {
-        "IdRecinto": 4,
-        "Recinto": "Legazpi Principal",
-        "Ocupacion": 136,
-        "Entradas": 727,
-        "Salidas": 591,
-        "Aforo": 495
-      },
-      {
-        "IdRecinto": 5,
-        "Recinto": "Chamber\u00ed Principal",
-        "Ocupacion": 107,
-        "Entradas": 570,
-        "Salidas": 463,
-        "Aforo": 292
-      }
-    ]
-  },
-  {
     "timestamp": "2026-01-25T12:42:25.088314+01:00",
     "data": [
       {
@@ -310,6 +265,51 @@
         "Ocupacion": 154,
         "Entradas": 470,
         "Salidas": 316,
+        "Aforo": 292
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-01-31T12:11:18.267146+01:00",
+    "data": [
+      {
+        "IdRecinto": 1,
+        "Recinto": "Alcobendas Principal",
+        "Ocupacion": 175,
+        "Entradas": 261,
+        "Salidas": 86,
+        "Aforo": 290
+      },
+      {
+        "IdRecinto": 2,
+        "Recinto": "Las Rozas Principal",
+        "Ocupacion": 306,
+        "Entradas": 485,
+        "Salidas": 179,
+        "Aforo": 525
+      },
+      {
+        "IdRecinto": 3,
+        "Recinto": "Berango Principal",
+        "Ocupacion": 85,
+        "Entradas": 105,
+        "Salidas": 20,
+        "Aforo": 290
+      },
+      {
+        "IdRecinto": 4,
+        "Recinto": "Legazpi Principal",
+        "Ocupacion": 194,
+        "Entradas": 245,
+        "Salidas": 51,
+        "Aforo": 495
+      },
+      {
+        "IdRecinto": 5,
+        "Recinto": "Chamber\u00ed Principal",
+        "Ocupacion": 105,
+        "Entradas": 139,
+        "Salidas": 34,
         "Aforo": 292
       }
     ]
