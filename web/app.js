@@ -1,11 +1,13 @@
 const PLACE_MAP = {
+  0: "Todos",
   1: "Alcobendas Principal",
   2: "Las Rozas Principal",
   4: "Legazpi Principal",
   5: "Chamberí Principal"
+
 };
 
-const MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const WEEKDAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 let selectedMonths = new Set([...Array(12).keys()]);
@@ -82,9 +84,9 @@ function average(arr) {
 
 function getColorForPercentage(percentage) {
   const p = percentage / 100;
-  
+
   let r, g, b;
-  
+
   if (p < 0.5) {
     const ratio = p * 2;
     r = Math.round(100 + (120 - 100) * ratio);
@@ -101,41 +103,41 @@ function getColorForPercentage(percentage) {
     g = Math.round(158 - (158 - 68) * ratio);
     b = Math.round(11 + (68 - 11) * ratio);
   }
-  
+
   return { r, g, b };
 }
 
 function createBarChart(container, labels, values) {
   container.innerHTML = '';
-  
+
   values.forEach((value, i) => {
     const barContainer = document.createElement("div");
     barContainer.className = "bar-container";
-    
+
     const label = document.createElement("div");
     label.className = "bar-label";
     label.textContent = labels[i];
-    
+
     const track = document.createElement("div");
     track.className = "bar-track";
-    
+
     const fill = document.createElement("div");
     fill.className = "bar-fill";
-    
+
     const percentage = (value * 100);
     const { r, g, b } = getColorForPercentage(percentage);
-    
+
     const color1 = `rgb(${r}, ${g}, ${b})`;
     const color2 = `rgb(${Math.min(255, r + 30)}, ${Math.min(255, g + 30)}, ${Math.min(255, b + 30)})`;
-    
+
     fill.style.background = `linear-gradient(90deg, ${color1}, ${color2})`;
     fill.style.boxShadow = `0 0 15px rgba(${r}, ${g}, ${b}, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2)`;
     fill.style.width = `${percentage}%`;
-    
+
     const valueLabel = document.createElement("span");
     valueLabel.className = "bar-value";
     valueLabel.textContent = `${percentage.toFixed(0)}%`;
-    
+
     fill.appendChild(valueLabel);
     track.appendChild(fill);
     barContainer.appendChild(label);
@@ -153,7 +155,7 @@ function render() {
 
   const rows = stats.flatMap(e =>
     e.data
-      .filter(r => r.IdRecinto === placeId)
+      .filter(r => (r.IdRecinto === placeId || placeId === 0))
       .map(r => ({
         date: new Date(e.timestamp),
         rel: relative(r)
@@ -174,17 +176,18 @@ function updateLabels(t) {
   document.getElementById("label-weekday").textContent = t.weekday;
   document.getElementById("label-month").textContent = t.month;
   document.getElementById("label-months").textContent = t.months;
+  document.getElementById("label-weekday").setAttribute("dataTooltip", t.tooltipWeekday);
 }
 
 function renderTotalAverage(rows) {
   const total = average(rows.map(r => r.rel));
   const percentage = total * 100;
   const { r, g, b } = getColorForPercentage(percentage);
-  
+
   const rVibrant = Math.min(255, Math.round(r * 1.15));
   const gVibrant = Math.min(255, Math.round(g * 1.15));
   const bVibrant = Math.min(255, Math.round(b * 1.15));
-  
+
   const totalElement = document.getElementById("total");
   totalElement.textContent = `${percentage.toFixed(1)}%`;
   totalElement.style.color = `rgb(${rVibrant}, ${gVibrant}, ${bVibrant})`;
@@ -192,13 +195,13 @@ function renderTotalAverage(rows) {
 }
 
 function renderWeekdayChart(rows) {
-  const weekday = Array.from({length: 7}, (_, d) => {
+  const weekday = Array.from({ length: 7 }, (_, d) => {
     const actualDay = (d + 1) % 7;
-    return average(rows.filter(r => 
+    return average(rows.filter(r =>
       r.date.getDay() === actualDay && selectedMonths.has(r.date.getMonth())
     ).map(r => r.rel));
   });
-  
+
   createBarChart(
     document.getElementById("weekday-chart"),
     WEEKDAY_NAMES,
@@ -207,10 +210,10 @@ function renderWeekdayChart(rows) {
 }
 
 function renderMonthChart(rows) {
-  const month = Array.from({length: 12}, (_, m) =>
+  const month = Array.from({ length: 12 }, (_, m) =>
     average(rows.filter(r => r.date.getMonth() === m).map(r => r.rel))
   );
-  
+
   createBarChart(
     document.getElementById("month-chart"),
     MONTH_NAMES,

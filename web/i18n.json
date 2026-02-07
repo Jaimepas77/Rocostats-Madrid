@@ -7,7 +7,8 @@
     "months": "Filtrar meses",
     "title": "Estadísticas de Escalada",
     "subtitle": "Sigue las tendencias de ocupación de tu rocódromo",
-    "language": "Idioma"
+    "language": "Idioma",
+    "tooltipWeekday": "L-V 19:30 - S-D 12:00"
   },
   "en": {
     "place": "Gym",
@@ -17,7 +18,8 @@
     "months": "Filter months",
     "title": "Climbing Stats",
     "subtitle": "Track your gym's occupancy trends",
-    "language": "Language"
+    "language": "Language",
+    "tooltipWeekday": "Mon-Fri 7:30pm - Sat-Sun 12:00pm"
   },
   "zh": {
     "place": "场馆",
@@ -27,7 +29,8 @@
     "months": "筛选月份",
     "title": "攀岩统计",
     "subtitle": "追踪您的攀岩馆占用趋势",
-    "language": "语言"
+    "language": "语言",
+    "tooltipWeekday": "周一至周五 19:30 - 周六至周日 12:00"
   },
   "ja": {
     "place": "施設",
@@ -37,6 +40,7 @@
     "months": "月をフィルター",
     "title": "クライミング統計",
     "subtitle": "ジムの混雑傾向を追跡",
-    "language": "言語"
+    "language": "言語",
+    "tooltipWeekday": "月〜金 19:30 - 土日 12:00"
   }
 }
