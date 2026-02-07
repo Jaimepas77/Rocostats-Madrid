@@ -297,6 +297,34 @@ function renderEvolutionChart(rows) {
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
   
+  // Gradients
+  const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  const stops = [0, 50, 75, 100];
+  
+  const createGradient = (id, opacity) => {
+    const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+    grad.setAttribute("id", id);
+    grad.setAttribute("gradientUnits", "userSpaceOnUse");
+    grad.setAttribute("x1", "0");
+    grad.setAttribute("y1", `${pad.top + graphH}`);
+    grad.setAttribute("x2", "0");
+    grad.setAttribute("y2", `${pad.top}`);
+    
+    stops.forEach(p => {
+      const {r, g, b} = getColorForPercentage(p);
+      const stop = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+      stop.setAttribute("offset", `${p}%`);
+      stop.setAttribute("stop-color", `rgb(${r},${g},${b})`);
+      stop.setAttribute("stop-opacity", opacity);
+      grad.appendChild(stop);
+    });
+    return grad;
+  };
+  
+  defs.appendChild(createGradient("evo-line-grad", 1));
+  defs.appendChild(createGradient("evo-area-grad", 0.3));
+  svg.appendChild(defs);
+
   // Area path
   let pathD = `M ${pad.left} ${pad.top + graphH}`;
   dailyData.forEach(d => {
@@ -307,6 +335,7 @@ function renderEvolutionChart(rows) {
   const area = document.createElementNS("http://www.w3.org/2000/svg", "path");
   area.setAttribute("d", pathD);
   area.setAttribute("class", "evolution-area");
+  area.setAttribute("fill", "url(#evo-area-grad)");
   svg.appendChild(area);
   
   // Grid lines (Horizontal)
@@ -338,6 +367,7 @@ function renderEvolutionChart(rows) {
   const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
   line.setAttribute("d", lineD);
   line.setAttribute("class", "evolution-line");
+  line.setAttribute("stroke", "url(#evo-line-grad)");
   svg.appendChild(line);
   
   // X Axis dates (approx 5 ticks)

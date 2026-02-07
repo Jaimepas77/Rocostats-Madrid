@@ -326,12 +326,9 @@ select:focus {
 }
 .evolution-line {
   fill: none;
-  stroke: #00d9ff;
   stroke-width: 3;
-  filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.5));
 }
 .evolution-area {
-  fill: rgba(0, 217, 255, 0.1);
   stroke: none;
 }
 .evolution-axis {
