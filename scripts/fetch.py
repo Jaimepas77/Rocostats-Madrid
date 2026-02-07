@@ -4,7 +4,8 @@ from zoneinfo import ZoneInfo
 from pathlib import Path
 
 BASE = "https://sputnikclimbing.deporsite.net"
-DATA_FILE = Path("C:\\Users\\Jaime\\Documents\\Experimentos\\Python\\Roco_scripts\\data\\stats.json")
+DATA_FILE = Path(__file__).parent.parent / "data" / "stats.json"
+SECRETS_FILE = Path(__file__).parent / ".secrets"
 
 def get_data():
     s = requests.Session()
@@ -50,13 +51,11 @@ def main():
 
 def push_changes():
     try:
-        secrets_path = Path(__file__).parent / ".secrets"
-        
-        if not secrets_path.exists():
+        if not SECRETS_FILE.exists():
             print("Warning: .secrets file not found. Skipping push.")
             return
 
-        secrets = json.loads(secrets_path.read_text())
+        secrets = json.loads(SECRETS_FILE.read_text())
         token = secrets.get("GITHUB_TOKEN")
         
         if not token:
