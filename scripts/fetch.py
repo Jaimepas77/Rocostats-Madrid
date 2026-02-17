@@ -80,6 +80,9 @@ def push_changes():
         if remote_url.startswith("https://"):
             auth_url = remote_url.replace("https://", f"https://{token}@", 1)
             subprocess.run(["git", "push", auth_url], cwd=repo_root, check=True)
+
+            # Ping healthcheck
+            requests.get("https://hc-ping.com/3ad05af0-c057-498c-9ad6-75638ac1f265")
         else:
             print("Remote URL must be HTTPS to use the token.")
 
