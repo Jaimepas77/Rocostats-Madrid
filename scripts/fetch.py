@@ -72,6 +72,9 @@ def push_changes():
             print("No changes to commit.")
             return
 
+        subprocess.run(["git", "config", "user.name", "Rocostats Bot"], cwd=repo_root, check=True)
+        subprocess.run(["git", "config", "user.email", "bot@rocostats.com"], cwd=repo_root, check=True)
+
         message = f"Update stats: {datetime.datetime.now().replace(microsecond=0).isoformat()}"
         subprocess.run(["git", "commit", "-m", message], cwd=repo_root, check=True)
 
