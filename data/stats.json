@@ -1303,5 +1303,50 @@
         "Aforo": 292
       }
     ]
+  },
+  {
+    "timestamp": "2026-02-24T19:30:01.945737+01:00",
+    "data": [
+      {
+        "IdRecinto": 1,
+        "Recinto": "Alcobendas Principal",
+        "Ocupacion": 209,
+        "Entradas": 525,
+        "Salidas": 316,
+        "Aforo": 290
+      },
+      {
+        "IdRecinto": 2,
+        "Recinto": "Las Rozas Principal",
+        "Ocupacion": 282,
+        "Entradas": 806,
+        "Salidas": 524,
+        "Aforo": 525
+      },
+      {
+        "IdRecinto": 3,
+        "Recinto": "Berango Principal",
+        "Ocupacion": 92,
+        "Entradas": 189,
+        "Salidas": 97,
+        "Aforo": 290
+      },
+      {
+        "IdRecinto": 4,
+        "Recinto": "Legazpi Principal",
+        "Ocupacion": 277,
+        "Entradas": 724,
+        "Salidas": 447,
+        "Aforo": 495
+      },
+      {
+        "IdRecinto": 5,
+        "Recinto": "Chamber\u00ed Principal",
+        "Ocupacion": 218,
+        "Entradas": 510,
+        "Salidas": 292,
+        "Aforo": 292
+      }
+    ]
   }
 ]
