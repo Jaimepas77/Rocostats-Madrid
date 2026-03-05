@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Climbing Stats - Madrid</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧗</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧗</text></svg>">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="tooltip.css">
 </head>
+
 <body>
   <div class="container">
     <div class="header">
@@ -32,7 +36,8 @@
 
     <div class="glass-card">
       <div class="weekday-header">
-        <div class="stat-title" id="label-weekday">Average by Weekday</div>
+        <div class="stat-title tooltip" id="label-weekday" dataTooltip="¡Haz click aquí!">Average by Weekday
+        </div>
         <details class="month-filter">
           <summary id="label-months">Filter months</summary>
           <div class="months-selector" id="months"></div>
@@ -45,17 +50,16 @@
       <div class="stat-title" id="label-month">Average by Month</div>
       <div class="chart" id="month-chart"></div>
     </div>
-
-    <div class="glass-card">
-      <div class="weekday-header">
-        <div class="stat-title" id="label-evolution">Evolution</div>
-        <select id="evolution-range" style="width: auto; min-width: 0; padding: 0.5rem; margin: 0; font-size: 0.8rem;">
-        </select>
-      </div>
-      <div class="chart evolution-chart" id="evolution-chart"></div>
-    </div>
   </div>
-
+  <div class="glass-card">
+    <div class="weekday-header">
+      <div class="stat-title" id="label-evolution">Evolution</div>
+      <select id="evolution-range" style="width: auto; min-width: 0; padding: 0.5rem; margin: 0; font-size: 0.8rem;">
+      </select>
+    </div>
+    <div class="chart evolution-chart" id="evolution-chart"></div>
+  </div>
   <script src="app.js"></script>
 </body>
+
 </html>
