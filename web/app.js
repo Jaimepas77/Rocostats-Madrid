@@ -2,7 +2,8 @@ const PLACE_MAP = {
   1: "Alcobendas Principal",
   2: "Las Rozas Principal",
   4: "Legazpi Principal",
-  5: "Chamberí Principal"
+  5: "Chamberí Principal",
+  6: "Guindalera Principal"
 };
 
 const MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -13,7 +14,7 @@ let selectedMonths = new Set([...Array(12).keys()]);
 let stats, i18n;
 
 async function load() {
-  stats = await (await fetch("../data/stats.json")).json();
+  stats = await (await fetch("../data/stats_cleaned.json")).json();
   i18n = await (await fetch("i18n.json")).json();
 
   initSelectors();

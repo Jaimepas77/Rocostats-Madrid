@@ -2,9 +2,11 @@ import requests, json, datetime, subprocess
 from urllib.parse import unquote
 from zoneinfo import ZoneInfo
 from pathlib import Path
+from clean import clean_ocupacion_data
 
 BASE = "https://sputnikclimbing.deporsite.net"
 DATA_FILE = Path(__file__).parent.parent / "data" / "stats.json"
+DATA_CLEANED_FILE = Path(__file__).parent.parent / "data" / "stats_cleaned.json"
 SECRETS_FILE = Path(__file__).parent / ".secrets"
 
 def get_data():
@@ -46,6 +48,9 @@ def main():
 
     DATA_FILE.write_text(json.dumps(history, indent=2))
 
+    # Clean data: remove recintos with Ocupacion == 0
+    clean_ocupacion_data(str(DATA_FILE), str(DATA_CLEANED_FILE))
+
     push_changes()
 
 
@@ -65,6 +70,7 @@ def push_changes():
         repo_root = DATA_FILE.parent.parent
         
         subprocess.run(["git", "add", str(DATA_FILE)], cwd=repo_root, check=True)
+        subprocess.run(["git", "add", str(DATA_CLEANED_FILE)], cwd=repo_root, check=True)
         
         # Check if there are changes to commit
         status = subprocess.run(["git", "status", "--porcelain", str(DATA_FILE)], cwd=repo_root, capture_output=True, text=True).stdout
