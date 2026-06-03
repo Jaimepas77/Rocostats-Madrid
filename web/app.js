@@ -39,7 +39,7 @@ function initSelectors() {
     option.textContent = name;
     placeSel.appendChild(option);
   });
-  placeSel.value = 4;
+  placeSel.value = 6;
   placeSel.onchange = render;
 
   const evoRangeSel = document.getElementById("evolution-range");
