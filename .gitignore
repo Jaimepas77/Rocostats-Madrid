@@ -1,3 +1,4 @@
 ocupacion.py
 scripts/.secrets
 __pycache__/
+.vscode
