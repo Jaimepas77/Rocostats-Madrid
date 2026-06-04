@@ -4,7 +4,7 @@ from pathlib import Path
 
 def clean_ocupacion_data(input_file: str, output_file: str = None) -> None:
     """
-    Remove all Recintos entries where Ocupacion is 0 from the JSON file.
+    Remove all Recintos entries where Ocupacion is 0 and cap Ocupacion at Aforo.
     
     Args:
         input_file: Path to the input JSON file
@@ -18,13 +18,20 @@ def clean_ocupacion_data(input_file: str, output_file: str = None) -> None:
     with open(input_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
-    # Clean data: remove recintos with Ocupacion == 0
+    # Clean data: remove recintos with Ocupacion == 0 and cap Ocupacion to Aforo
     cleaned_data = []
     for timestamp_entry in data:
-        cleaned_recintos = [
-            recinto for recinto in timestamp_entry['data']
-            if recinto.get('Ocupacion', 0) != 0
-        ]
+        cleaned_recintos = []
+        for recinto in timestamp_entry['data']:
+            ocupacion = recinto.get('Ocupacion', 0)
+            if ocupacion == 0:
+                continue
+
+            aforo = recinto.get('Aforo')
+            if aforo is not None and ocupacion > aforo:
+                recinto = {**recinto, 'Ocupacion': aforo}
+
+            cleaned_recintos.append(recinto)
         
         # Only keep timestamp entries that still have data
         if cleaned_recintos:
