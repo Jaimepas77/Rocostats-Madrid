@@ -39,8 +39,11 @@ function initSelectors() {
     option.textContent = name;
     placeSel.appendChild(option);
   });
-  placeSel.value = 6;
-  placeSel.onchange = render;
+  placeSel.value = localStorage.getItem("placeId") || 6;
+  placeSel.onchange = () => {
+    localStorage.setItem("placeId", placeSel.value);
+    render();
+  };
 
   const evoRangeSel = document.getElementById("evolution-range");
   EVOLUTION_RANGES.forEach(days => {
